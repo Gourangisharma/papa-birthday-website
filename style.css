@@ -1172,7 +1172,6 @@ img {
   margin-top: .05rem;
 }
 
-.coupon-text {}
 .coupon-name {
   font-family: var(--ff-disp);
   font-size: .92rem;
@@ -1580,12 +1579,12 @@ img {
      ================================================================ */
   @media (max-width: 768px) {
     .slide {
-      padding: 1rem 1rem 4.7rem;
+      padding: 1.25rem 1rem 6.15rem;
       justify-content: flex-start;
     }
 
     .page-head {
-      margin-bottom: 1rem;
+      margin-bottom: .85rem;
       max-width: 100%;
     }
 
@@ -1622,11 +1621,11 @@ img {
     .next-arrow { right: .7rem; }
 
     .slide-counter {
-      bottom: 3.35rem;
+      bottom: 4rem;
     }
 
     .slide-hint {
-      bottom: 4.4rem;
+      bottom: 5.15rem;
       white-space: normal;
       text-align: center;
       max-width: calc(100vw - 1.5rem);
@@ -1635,7 +1634,8 @@ img {
     }
 
     .music-widget {
-      top: .6rem;
+      top: .55rem;
+      bottom: auto;
       left: .6rem;
     }
 
@@ -1683,11 +1683,15 @@ img {
     }
 
     .people-card {
-      width: min(100%, 320px);
+      width: min(100%, 300px);
     }
 
     .people-card img {
-      height: 180px;
+      height: 160px;
+    }
+
+    .people-card figcaption {
+      padding: .85rem;
     }
 
     .traits-grid {
@@ -1716,9 +1720,22 @@ img {
       gap: .9rem;
     }
 
+    .note {
+      padding: 1.25rem 1.15rem;
+    }
+
+    .note p {
+      font-size: 1.02rem;
+      line-height: 1.48;
+    }
+
     .envelopes-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: .75rem;
+    }
+
+    .envelope-card {
+      aspect-ratio: 16 / 9;
     }
 
     .cake-svg {
@@ -1738,12 +1755,12 @@ img {
 
   @media (max-width: 480px) {
     .slide {
-      padding: .85rem .75rem 5rem;
+      padding: 1rem .75rem 6.35rem;
     }
 
     .page-head h2,
     .traits-main-title {
-      font-size: clamp(1.5rem, 7vw, 2.15rem);
+      font-size: clamp(1.45rem, 6.6vw, 2rem);
     }
 
     .page-lede,
@@ -1788,12 +1805,12 @@ img {
     }
 
     .slide-counter {
-      bottom: 3rem;
+      bottom: 3.9rem;
       font-size: 10px;
     }
 
     .chapter-nav {
-      bottom: .45rem;
+      bottom: .55rem;
       gap: .3rem;
       padding: .3rem .4rem;
     }
@@ -1817,9 +1834,19 @@ img {
     .next-arrow { right: .5rem; }
 
     .slide-hint {
-      bottom: 4rem;
+      bottom: 5.2rem;
       font-size: 9px;
       padding: .35rem .7rem;
+    }
+
+    .music-widget {
+      top: .5rem;
+      bottom: auto;
+      left: .5rem;
+    }
+
+    .music-widget.expanded {
+      max-width: calc(100vw - 1rem);
     }
 
     .memories-slide {
@@ -1847,11 +1874,15 @@ img {
     }
 
     .people-card {
-      width: min(100%, 270px);
+      width: min(100%, 252px);
     }
 
     .people-card img {
-      height: 170px;
+      height: 140px;
+    }
+
+    .people-card figcaption {
+      padding: .75rem .8rem .85rem;
     }
 
     .who {
@@ -1860,6 +1891,15 @@ img {
 
     .people-card figcaption p {
       font-size: 12px;
+    }
+
+    .note {
+      padding: 1rem .95rem;
+    }
+
+    .note p {
+      font-size: .95rem;
+      line-height: 1.42;
     }
 
     .traits-grid {
@@ -1899,7 +1939,7 @@ img {
     }
 
     .envelope-card {
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 15 / 8;
     }
 
     .env-seal {

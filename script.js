@@ -137,13 +137,17 @@ function launchSurprise() {
     // Auto-reveal the music player widget so Papa notices it
     const widget = document.getElementById('musicWidget');
     if (widget) {
-      widget.classList.add('expanded');
-      setTimeout(() => {
-        // Collapse after 3.8s unless he has interacted with it
-        if (widget.classList.contains('expanded') && !widget.dataset.userInteracted) {
-          widget.classList.remove('expanded');
-        }
-      }, 3800);
+      if (window.innerWidth > 768) {
+        widget.classList.add('expanded');
+        setTimeout(() => {
+          // Collapse after 3.8s unless he has interacted with it
+          if (widget.classList.contains('expanded') && !widget.dataset.userInteracted) {
+            widget.classList.remove('expanded');
+          }
+        }, 3800);
+      } else {
+        widget.classList.remove('expanded');
+      }
     }
   }, 900);
 }
@@ -168,6 +172,9 @@ function goTo(index, dir) {
 
   const fromSlide = slides[current];
   const toSlide   = slides[index];
+
+  // Always reveal the next slide from its top edge on mobile and desktop.
+  toSlide.scrollTop = 0;
 
   // Position the incoming slide off-screen
   toSlide.style.transition = 'none';
