@@ -20,10 +20,28 @@
 
 html, body {
   height: 100%;
+  max-width: 100%;
   overflow: hidden;          /* NO page scroll — slides take over */
   background: var(--deep);
   color: var(--cream);
   font-family: var(--ff-body);
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+img, svg, iframe {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
 }
 
 /* Stars canvas always sits at z-0 */
@@ -222,6 +240,7 @@ html, body {
   position: relative;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
 }
 
@@ -232,12 +251,13 @@ html, body {
   position: absolute;
   inset: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem 5rem 2rem 2rem;  /* right padding for dots */
+  padding: 2rem 5rem 3.2rem 2rem;  /* right padding for dots */
   opacity: 0;
   pointer-events: none;
   overflow-y: auto;
@@ -1222,6 +1242,7 @@ html, body {
   pointer-events: none;
   animation: hintPulse 3s ease-in-out infinite;
   z-index: 10;
+  max-width: min(86vw, 700px);
 }
 @keyframes hintPulse {
   0%,100% { opacity: .55; }
@@ -1553,5 +1574,393 @@ html, body {
     width: 200px;
   }
 }
+
+  /* ================================================================
+     RESPONSIVE SAFETY LAYER
+     ================================================================ */
+  @media (max-width: 768px) {
+    .slide {
+      padding: 1rem 1rem 4.7rem;
+      justify-content: flex-start;
+    }
+
+    .page-head {
+      margin-bottom: 1rem;
+      max-width: 100%;
+    }
+
+    .chapter-nav {
+      top: auto;
+      right: auto;
+      bottom: .7rem;
+      left: 50%;
+      transform: translateX(-50%);
+      flex-direction: row;
+      gap: .4rem;
+      max-width: calc(100vw - 1rem);
+      padding: .35rem .5rem;
+      border-radius: 999px;
+      background: rgba(8, 7, 22, .34);
+      backdrop-filter: blur(10px);
+    }
+
+    .dot {
+      width: 28px;
+      height: 28px;
+      flex: 0 0 auto;
+    }
+
+    .nav-arrow {
+      top: auto;
+      bottom: .7rem;
+      transform: none;
+      width: 38px;
+      height: 38px;
+    }
+
+    .prev-arrow { left: .7rem; }
+    .next-arrow { right: .7rem; }
+
+    .slide-counter {
+      bottom: 3.35rem;
+    }
+
+    .slide-hint {
+      bottom: 4.4rem;
+      white-space: normal;
+      text-align: center;
+      max-width: calc(100vw - 1.5rem);
+      font-size: 10px;
+      padding: .4rem .8rem;
+    }
+
+    .music-widget {
+      top: .6rem;
+      left: .6rem;
+    }
+
+    .music-widget.expanded {
+      max-width: calc(100vw - 1.2rem);
+    }
+
+    .music-widget.expanded iframe {
+      width: min(62vw, 240px);
+    }
+
+    .intro-card {
+      width: min(92vw, 520px);
+      padding: 2rem 1.1rem;
+    }
+
+    .intro-btns {
+      gap: .75rem;
+    }
+
+    .btn-yes,
+    .btn-no {
+      width: min(100%, 280px);
+    }
+
+    .photo-carousel-wrap {
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .flip-stage {
+      flex: 1 1 100%;
+      max-width: min(100%, 560px);
+    }
+
+    .car-arrow {
+      width: 38px;
+      height: 38px;
+      flex: 0 0 auto;
+    }
+
+    .people-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .people-card {
+      width: min(100%, 320px);
+    }
+
+    .people-card img {
+      height: 180px;
+    }
+
+    .traits-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .traits-decorations {
+      overflow: hidden;
+    }
+
+    .decor-hero-sketch {
+      left: .75rem;
+      top: .75rem;
+      transform: scale(.85);
+      transform-origin: top left;
+    }
+
+    .decor-sticky-note {
+      right: .75rem;
+      top: .75rem;
+      transform: scale(.85) rotate(3deg);
+      transform-origin: top right;
+    }
+
+    .notes-wall {
+      gap: .9rem;
+    }
+
+    .envelopes-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .75rem;
+    }
+
+    .cake-svg {
+      width: min(320px, 80vw);
+    }
+
+    .modal-card {
+      width: calc(100vw - 1rem);
+      max-height: 84vh;
+      padding: 1.6rem 1rem 1.2rem;
+    }
+
+    .coupon-card {
+      padding: .75rem .85rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .slide {
+      padding: .85rem .75rem 5rem;
+    }
+
+    .page-head h2,
+    .traits-main-title {
+      font-size: clamp(1.5rem, 7vw, 2.15rem);
+    }
+
+    .page-lede,
+    .traits-main-subtitle {
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .hero-title .line {
+      font-size: clamp(2.3rem, 14vw, 4rem);
+    }
+
+    .hero-title .small {
+      font-size: clamp(1.8rem, 10vw, 2.8rem);
+    }
+
+    .hero-sub {
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .intro-title {
+      font-size: clamp(2.7rem, 16vw, 4rem);
+    }
+
+    .intro-question {
+      font-size: clamp(1.05rem, 6vw, 1.35rem);
+      margin-bottom: 1.5rem;
+    }
+
+    .intro-btns {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn-yes,
+    .btn-no {
+      width: 100%;
+      max-width: 270px;
+      padding: .9rem 1.15rem;
+      font-size: 1rem;
+    }
+
+    .slide-counter {
+      bottom: 3rem;
+      font-size: 10px;
+    }
+
+    .chapter-nav {
+      bottom: .45rem;
+      gap: .3rem;
+      padding: .3rem .4rem;
+    }
+
+    .dot {
+      width: 24px;
+      height: 24px;
+    }
+
+    .dot span {
+      font-size: 7px;
+    }
+
+    .nav-arrow {
+      width: 34px;
+      height: 34px;
+      font-size: 1rem;
+    }
+
+    .prev-arrow { left: .5rem; }
+    .next-arrow { right: .5rem; }
+
+    .slide-hint {
+      bottom: 4rem;
+      font-size: 9px;
+      padding: .35rem .7rem;
+    }
+
+    .memories-slide {
+      padding-top: .75rem;
+    }
+
+    .photo-carousel-wrap {
+      gap: .35rem;
+    }
+
+    .flip-card {
+      aspect-ratio: 15 / 11;
+    }
+
+    .photo-overlay {
+      padding: .85rem .8rem .65rem;
+    }
+
+    .front-cap {
+      font-size: 1rem;
+    }
+
+    .flip-prompt {
+      font-size: 9px;
+    }
+
+    .people-card {
+      width: min(100%, 270px);
+    }
+
+    .people-card img {
+      height: 170px;
+    }
+
+    .who {
+      font-size: 1.1rem;
+    }
+
+    .people-card figcaption p {
+      font-size: 12px;
+    }
+
+    .traits-grid {
+      grid-template-columns: 1fr;
+      gap: .65rem;
+    }
+
+    .trait-card {
+      padding: .8rem .85rem .9rem;
+    }
+
+    .trait-card p {
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .traits-footer-bar p,
+    .note p span,
+    .env-when,
+    .env-reason,
+    .coupon-desc {
+      overflow-wrap: anywhere;
+    }
+
+    .note {
+      padding: 1.1rem 1rem;
+    }
+
+    .note p {
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+
+    .envelopes-grid {
+      grid-template-columns: 1fr;
+      gap: .65rem;
+    }
+
+    .envelope-card {
+      aspect-ratio: 16 / 9;
+    }
+
+    .env-seal {
+      width: 34px;
+      height: 34px;
+      font-size: 1.2rem;
+    }
+
+    .env-when {
+      font-size: .72rem;
+    }
+
+    .env-reason {
+      font-size: .78rem;
+    }
+
+    .cake-svg {
+      width: min(300px, 84vw);
+    }
+
+    .cake-hint {
+      font-size: 12px;
+    }
+
+    .finale {
+      max-width: 100%;
+      margin-top: 1rem;
+    }
+
+    .finale p {
+      font-size: 14px;
+    }
+
+    .modal-card {
+      width: calc(100vw - 1rem);
+      max-height: 82vh;
+      padding: 1.4rem .95rem 1.05rem;
+      border-radius: 16px;
+    }
+
+    .modal-seal {
+      width: 52px;
+      height: 52px;
+      font-size: 1.9rem;
+    }
+
+    .modal-title {
+      font-size: .9rem;
+    }
+
+    .coupon-card {
+      gap: .7rem;
+    }
+
+    .coupon-name {
+      font-size: .84rem;
+    }
+
+    .coupon-desc {
+      font-size: .72rem;
+    }
+  }
 
 
