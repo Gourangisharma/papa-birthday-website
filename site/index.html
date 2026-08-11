@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Papa 🎉</title>
+<meta name="description" content="A special birthday surprise crafted with love for Papa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Caveat:wght@500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Starfield canvas (always behind everything) -->
+<canvas id="stars"></canvas>
+
+<!-- ============================================================
+     INTRO SCREEN — "Are you ready for the surprise?"
+     ============================================================ -->
+<div id="introScreen" class="intro-screen">
+  <div class="intro-blob b1"></div>
+  <div class="intro-blob b2"></div>
+
+  <div class="intro-card">
+    <div class="gift-bounce" id="giftIcon" aria-hidden="true">🎁</div>
+
+    <p class="intro-eyebrow">11th August · A Very Special Day</p>
+    <h1 class="intro-title">Papa,</h1>
+    <p class="intro-tagline">Someone made something just for you…</p>
+    <p class="intro-question">Are you ready for your<br><span>Birthday Surprise?</span></p>
+
+    <div class="intro-btns">
+      <button id="yesBtn" class="btn-yes" aria-label="Yes I am ready">
+        <span class="btn-text">Yes, I'm Ready! 🎉</span>
+        <span class="btn-glow"></span>
+      </button>
+      <button id="noBtn" class="btn-no" aria-label="Not yet">Not yet…</button>
+    </div>
+
+    <p class="no-msg" id="noMsg" aria-live="polite"></p>
+  </div>
+</div>
+
+<!-- ============================================================
+     MAIN SLIDESHOW
+     ============================================================ -->
+<div id="slideshow" class="slideshow hidden" aria-label="Birthday slideshow">
+
+  <!-- Floating Music Widget (Top-Left) -->
+  <div id="musicWidget" class="music-widget">
+    <button id="musicToggle" class="music-toggle" aria-label="Toggle music track">
+      <span class="music-icon">🎵</span>
+      <span class="music-text">Song 💛</span>
+    </button>
+    <div id="spotifyContainer" class="spotify-container">
+      <iframe src="https://open.spotify.com/embed/track/6n4LpWn6gFvczitm1QMi3R?utm_source=generator&theme=0" width="280" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <!-- Side dot navigation -->
+  <nav class="chapter-nav" aria-label="Slide navigation">
+    <button data-slide="0" class="dot active" aria-label="Slide 1 – Hero"><span>01</span></button>
+    <button data-slide="1" class="dot"         aria-label="Slide 2 – Memories"><span>02</span></button>
+    <button data-slide="2" class="dot"         aria-label="Slide 3 – People"><span>03</span></button>
+    <button data-slide="3" class="dot"         aria-label="Slide 4 – Traits"><span>04</span></button>
+    <button data-slide="4" class="dot"         aria-label="Slide 5 – Wishes"><span>05</span></button>
+    <button data-slide="5" class="dot"         aria-label="Slide 6 – Open When Letters"><span>06</span></button>
+    <button data-slide="6" class="dot"         aria-label="Slide 7 – Cake"><span>07</span></button>
+  </nav>
+
+  <!-- Prev / Next arrows -->
+  <button class="nav-arrow prev-arrow" id="prevBtn" aria-label="Previous slide" disabled>&#8592;</button>
+  <button class="nav-arrow next-arrow" id="nextBtn" aria-label="Next slide">&#8594;</button>
+
+  <!-- Slide counter -->
+  <div class="slide-counter" id="slideCounter" aria-live="polite">1 / 7</div>
+
+  <!-- ======================================================
+       SLIDES WRAPPER
+       ====================================================== -->
+  <div class="slides-wrapper" id="slidesWrapper">
+
+    <!-- ========== SLIDE 1 — HERO ========== -->
+    <section class="slide hero-slide active" id="slide0" aria-label="Hero">
+      <div class="toran" aria-hidden="true">
+        <svg viewBox="0 0 1200 90" preserveAspectRatio="none">
+          <path d="M0,0 Q600,90 1200,0" stroke="rgba(245,166,35,0.35)" stroke-width="2" fill="none"/>
+        </svg>
+        <div class="toran-flowers" id="toranFlowers"></div>
+      </div>
+
+      <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <p class="eyebrow">11th August · A Very Special Day</p>
+        <h2 class="hero-title">
+          <span class="line">Happy</span>
+          <span class="line accent">Birthday</span>
+          <span class="line small">Papa</span>
+        </h2>
+        <p class="hero-sub">Ek aur saal poora hua — us insaan ke liye jisne hamesha travel, laughs, aur ek acchi jacket ke saath sab kuch kiya 🧥✨</p>
+      </div>
+      <div class="slide-hint">← → arrows dabao, ya screen swipe karo aage badhne ke liye 👆</div>
+    </section>
+
+    <!-- ========== SLIDE 2 — MEMORY LANE (CAROUSEL) ========== -->
+    <section class="slide memories-slide" id="slide1" aria-label="Memory Lane">
+      <header class="page-head center" style="margin-bottom:1rem">
+        <p class="eyebrow">Chapter Two</p>
+        <h2>Turning Back the Clock</h2>
+        <p class="page-lede">Har trip, har photo, har "ek aur" — yeh sab hamare favorite moments hain 💛</p>
+      </header>
+
+      <!-- Carousel -->
+      <div class="photo-carousel-wrap">
+        <button class="car-arrow car-prev" id="carPrev" aria-label="Previous">&#8249;</button>
+
+        <div class="flip-stage">
+          <div class="flip-card" id="flipCard">
+            <!-- FRONT -->
+            <div class="flip-front">
+              <img id="carouselImg" src="images/img10.jpg" alt="Family memory" loading="lazy">
+              <div class="photo-overlay">
+                <span class="front-cap" id="frontCap">Shuruaat ke din 🥹</span>
+                <span class="flip-prompt">tap karke peeche dekho ✨</span>
+              </div>
+            </div>
+            <!-- BACK -->
+            <div class="flip-back">
+              <div class="flip-back-inner">
+                <span class="flip-back-icon" id="flipBackIcon">🥹</span>
+                <p class="flip-back-msg" id="flipBackMsg"></p>
+                <span class="flip-back-tap">↩ wapas jaane ke liye tap karo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="car-arrow car-next" id="carNext" aria-label="Next">&#8250;</button>
+      </div>
+
+      <!-- Thumbnail dots -->
+      <div class="thumb-dots" id="thumbDots"></div>
+      <p class="photo-counter" id="photoCounter">1 / 8</p>
+      <div class="slide-hint">📸 Photo pe tap karo — peeche ek secret message chhupa hai! 🤫</div>
+    </section>
+
+    <!-- ========== SLIDE 3 — THE PEOPLE WHO LOVE YOU ========== -->
+    <section class="slide people-slide" id="slide2" aria-label="The People Who Love You">
+      <header class="page-head center">
+        <p class="eyebrow">Chapter Three</p>
+        <h2>The People Who Love You</h2>
+        <p class="page-lede">Yeh log hain jinke liye aap sab karte hain — aur jo aapke bina sochh bhi nahi sakte 💛</p>
+      </header>
+
+      <div class="people-grid">
+        <figure class="people-card">
+          <img src="images/img8.jpg" alt="Papa and Mummy, close together" loading="lazy">
+          <figcaption>
+            <span class="who">Mummy</span>
+            <p>"Tees saal ke bure jokes ke baad bhi main hasti hoon — yeh toh kuch baat hai na? Happy birthday, meri duniya." 🌸</p>
+          </figcaption>
+        </figure>
+        <figure class="people-card">
+          <img src="images/img3.jpg" alt="Papa and daughter selfie" loading="lazy">
+          <figcaption>
+            <span class="who">Your Daughter</span>
+            <p>"Har monument pe 'ek photo aur' bolne wale aap — yeh aadat mat chhodna kabhi. Happy birthday Papa, love you the most!" 📸💕</p>
+          </figcaption>
+        </figure>
+        <figure class="people-card">
+          <img src="images/img10.jpg" alt="Papa with the kids, years ago" loading="lazy">
+          <figcaption>
+            <span class="who">Sab ke Sab 🤗</span>
+            <p>"Solid, dependable, aur quietly the funniest log in the room — Happy birthday to the OG family man!" 🎉</p>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="slide-hint">💌 Yeh teen log aapko bahut pyar karte hain — aage bhi hote rehna! 🥰</div>
+    </section>
+
+    <!-- ========== SLIDE 4 — LITTLE THINGS WE LOVE ========== -->
+    <section class="slide traits-slide" id="slide3" aria-label="Little Things We Love About Papa">
+      
+      <!-- Hand-drawn styled chalkboard decorations (My Hero, My Papa sketch & sticky note) -->
+      <div class="traits-decorations">
+        <div class="decor-hero-sketch">
+          <span class="decor-sketch-heart">❤</span>
+          <span class="decor-sketch-text">My Hero<br>My Papa</span>
+        </div>
+        <div class="decor-sticky-note">
+          <p>Proud to be<br>your<br><span>little girl ♡</span></p>
+        </div>
+      </div>
+
+      <header class="page-head center">
+        <p class="eyebrow">Chapter Four</p>
+        <h2 class="traits-main-title">Little Things We Love About Papa <span class="heart-emoji">♡</span></h2>
+        <p class="traits-main-subtitle">Aap ho toh sab hai. Thank you for everything, Papa ❤️</p>
+      </header>
+
+      <div class="traits-grid">
+        <div class="trait-card tc-new-cream">
+          <span class="trait-icon">⭐</span>
+          <h3>My First Hero</h3>
+          <p>Aapne sikhaya kya sahi hai, kya galat. Aap mere pehle teacher, mentor aur hero ho.</p>
+          <div class="card-heart-bottom">❤</div>
+        </div>
+        
+        <div class="trait-card tc-new-rose">
+          <span class="trait-icon">☕</span>
+          <h3>Always There</h3>
+          <p>Chahe kuch bhi ho, aap hamesha mere saath khade rahe — bina kuch expect kiye.</p>
+          <div class="card-heart-bottom">❤</div>
+        </div>
+
+        <div class="trait-card tc-new-gold">
+          <span class="trait-icon">🛡️</span>
+          <h3>My Safety Blanket</h3>
+          <p>Aapki ek smile se tension gayab. Aap ho toh duniya ki koi bhi problem badi nahi lagti.</p>
+          <div class="card-heart-bottom">❤</div>
+        </div>
+
+        <div class="trait-card tc-new-green">
+          <span class="trait-icon">🪴</span>
+          <h3>You Believe in Me</h3>
+          <p>Aapne mujh par hamesha bharosa kiya, jab main khud par nahi kar paayi. That means the world.</p>
+          <div class="card-heart-bottom">❤</div>
+        </div>
+
+        <div class="trait-card tc-new-orange">
+          <span class="trait-icon">⏰</span>
+          <h3>Your Time is Precious</h3>
+          <p>Aap apna time, comfort sab chhod kar sirf hamare liye poori jaan laga dete ho. Thank you, Papa!</p>
+          <div class="card-heart-bottom">❤</div>
+        </div>
+
+        <div class="trait-card tc-new-pink">
+          <span class="trait-icon">❤️</span>
+          <h3>You're My Forever</h3>
+          <p>I may not say it enough, but I love you more than words can ever explain. Always & Forever.</p>
+          <div class="card-heart-bottom">❤</div>
+        </div>
+      </div>
+
+      <!-- Bottom footer greeting bar -->
+      <div class="traits-footer-bar">
+        <p>❤️ Aap sirf mere Papa nahi, meri strength ho, meri inspiration ho, meri duniya ho.<br><strong>Happy Birthday, Papa! I love you so much! 🎂❤️</strong></p>
+      </div>
+
+      <div class="slide-hint">❤️ Aap ho toh sab hai, Papa! Aage badhein →</div>
+    </section>
+
+    <!-- ========== SLIDE 5 — WISHES & BLESSINGS ========== -->
+    <section class="slide wishes-slide" id="slide4" aria-label="Wishes and Blessings">
+      <header class="page-head center">
+        <p class="eyebrow">Chapter Five</p>
+        <h2>Wishes &amp; Blessings</h2>
+        <p class="page-lede">Dil se likhi chithiyan — ek ek karke padho, jaldi mat karo 📝</p>
+      </header>
+
+      <div class="notes-wall">
+        <div class="note n1"><p>"Har saal ki tarah, is saal bhi — swasth raho, khush raho, aur aise hi humein ghoomne le jaate raho. Jahaan bhi jao, hum saath hain." <span>— Mummy 🌸</span></p></div>
+        <div class="note n2"><p>"Papa, aap ne kabhi ek trip miss nahi ki, ek photo miss nahi ki, ek moment miss nahi ki. Is saal ki wish? Jo bhi aap deserve karte ho — best of the best!" <span>— Your Daughter 💕</span></p></div>
+        <div class="note n3"><p>"Aur trips chahiye, aur turbans chahiye, aur wahi funny jokes — exactly jaisa aap ho, waise hi raho hamesha. Badalna mat!" <span>— The Family 🎉</span></p></div>
+        <div class="note n4"><p>"Har 'don't worry, I've got it' ke liye — shukriya Papa. Ek aur saal sirf aapka hai. Khul ke jiyo, dil se khao, aur mast raho!" <span>— Sab ke pyaar se 💛</span></p></div>
+      </div>
+      <div class="slide-hint">📝 Yeh chithiyan dil se likhi gayi hain — padh ke dil bhar le! Aage aur bhi hai →</div>
+    </section>
+
+    <!-- ========== SLIDE 6 — OPEN WHEN LETTERS ========== -->
+    <section class="slide letters-slide" id="slide5" aria-label="Open When Letters">
+      <header class="page-head center">
+        <p class="eyebrow">Chapter Six</p>
+        <h2>Letters to You</h2>
+        <p class="page-lede">Yeh kuch khaas chithiyan hain — jab bhi zaroorat lage, ek kholo aur andar dekho 💌</p>
+      </header>
+
+      <div class="envelopes-grid" id="envelopesGrid">
+
+        <button class="envelope-card" data-letter="0" aria-label="Open letter: you need a laugh">
+          <div class="env-flap"></div>
+          <div class="env-fold env-fold-l"></div>
+          <div class="env-fold env-fold-r"></div>
+          <div class="env-body">
+            <div class="env-seal">😄</div>
+            <p class="env-when">open when…</p>
+            <p class="env-reason">you need a laugh</p>
+          </div>
+        </button>
+
+        <button class="envelope-card" data-letter="1" aria-label="Open letter: you need some comfort">
+          <div class="env-flap"></div>
+          <div class="env-fold env-fold-l"></div>
+          <div class="env-fold env-fold-r"></div>
+          <div class="env-body">
+            <div class="env-seal">🤗</div>
+            <p class="env-when">open when…</p>
+            <p class="env-reason">you need some comfort</p>
+          </div>
+        </button>
+
+        <button class="envelope-card" data-letter="2" aria-label="Open letter: you miss the trips">
+          <div class="env-flap"></div>
+          <div class="env-fold env-fold-l"></div>
+          <div class="env-fold env-fold-r"></div>
+          <div class="env-body">
+            <div class="env-seal">✈️</div>
+            <p class="env-when">open when…</p>
+            <p class="env-reason">you miss the trips</p>
+          </div>
+        </button>
+
+        <button class="envelope-card" data-letter="3" aria-label="Open letter: you want company">
+          <div class="env-flap"></div>
+          <div class="env-fold env-fold-l"></div>
+          <div class="env-fold env-fold-r"></div>
+          <div class="env-body">
+            <div class="env-seal">💛</div>
+            <p class="env-when">open when…</p>
+            <p class="env-reason">you want company</p>
+          </div>
+        </button>
+
+        <button class="envelope-card" data-letter="4" aria-label="Open letter: you feel proud">
+          <div class="env-flap"></div>
+          <div class="env-fold env-fold-l"></div>
+          <div class="env-fold env-fold-r"></div>
+          <div class="env-body">
+            <div class="env-seal">⭐</div>
+            <p class="env-when">open when…</p>
+            <p class="env-reason">you feel proud</p>
+          </div>
+        </button>
+
+        <button class="envelope-card" data-letter="5" aria-label="Open letter: you need a smile">
+          <div class="env-flap"></div>
+          <div class="env-fold env-fold-l"></div>
+          <div class="env-fold env-fold-r"></div>
+          <div class="env-body">
+            <div class="env-seal">🌻</div>
+            <p class="env-when">open when…</p>
+            <p class="env-reason">you need a smile</p>
+          </div>
+        </button>
+
+      </div>
+      <div class="slide-hint">💬 Koi bhi envelope pe click karo — andar ek special gift chhupa hai! 🎁</div>
+    </section>
+
+    <!-- ========== SLIDE 7 — MAKE A WISH ========== -->
+    <section class="slide cake-slide" id="slide6" aria-label="Make a Wish">
+      <div class="confetti-layer" id="confettiLayer2" aria-hidden="true"></div>
+
+      <header class="page-head center">
+        <p class="eyebrow">Final Chapter</p>
+        <h2>Make A Wish, Papa</h2>
+        <p class="page-lede">Moombattiyan bujhao aur dil se ek wish karo 🕯️</p>
+      </header>
+
+      <div class="cake-wrap">
+        <svg id="cakeSvg" viewBox="0 0 400 360" class="cake-svg" role="img" aria-label="Birthday cake with candles">
+          <ellipse cx="200" cy="330" rx="150" ry="16" fill="rgba(0,0,0,0.35)"/>
+          <rect x="70" y="230" width="260" height="80" rx="14" fill="#3a2145"/>
+          <rect x="70" y="230" width="260" height="16" fill="#FF6B8B"/>
+          <rect x="95" y="170" width="210" height="70" rx="12" fill="#F5A623"/>
+          <rect x="95" y="170" width="210" height="14" fill="#FFC857"/>
+          <rect x="130" y="118" width="140" height="60" rx="10" fill="#4a2f6b"/>
+          <rect x="130" y="118" width="140" height="12" fill="#FF6B8B"/>
+          <g fill="#FDF6E9" opacity="0.85">
+            <circle cx="120" cy="234" r="6"/><circle cx="180" cy="234" r="5"/>
+            <circle cx="250" cy="234" r="6"/><circle cx="300" cy="234" r="5"/>
+          </g>
+          <g class="candle" data-lit="true" transform="translate(150,60)">
+            <rect x="-4" y="0" width="8" height="58" rx="3" fill="#FDF6E9"/>
+            <g class="flame-group"><ellipse class="flame" cx="0" cy="-8" rx="6" ry="12" fill="#FFC857"/><ellipse cx="0" cy="-6" rx="3" ry="6" fill="#FF8FA3"/></g>
+          </g>
+          <g class="candle" data-lit="true" transform="translate(200,45)">
+            <rect x="-4" y="0" width="8" height="70" rx="3" fill="#FDF6E9"/>
+            <g class="flame-group"><ellipse class="flame" cx="0" cy="-8" rx="6" ry="12" fill="#FFC857"/><ellipse cx="0" cy="-6" rx="3" ry="6" fill="#FF8FA3"/></g>
+          </g>
+          <g class="candle" data-lit="true" transform="translate(250,60)">
+            <rect x="-4" y="0" width="8" height="58" rx="3" fill="#FDF6E9"/>
+            <g class="flame-group"><ellipse class="flame" cx="0" cy="-8" rx="6" ry="12" fill="#FFC857"/><ellipse cx="0" cy="-6" rx="3" ry="6" fill="#FF8FA3"/></g>
+          </g>
+        </svg>
+        <p class="cake-hint" id="cakeHint">3 candles left — tap each one</p>
+      </div>
+
+      <div class="finale" id="finale">
+        <h3>Happy Birthday, Papa 🎈</h3>
+        <p>Yeh wala insaan jo kabhi 'ek aur photo' bolna band nahi karta — hum aapko bahut pyar karte hain, aaj bhi aur hamesha 💛</p>
+      </div>
+      <div class="slide-hint">🎂 Wish ho gayi? Yeh toh shuru tha — aapka birthday poora din celebrate hoga! 🥳</div>
+    </section>
+
+  </div><!-- /slides-wrapper -->
+</div><!-- /slideshow -->
+
+<!-- ============================================================
+     LETTER MODAL OVERLAY
+     ============================================================ -->
+<div id="letterModal" class="letter-modal" role="dialog" aria-modal="true" aria-label="Open When Letter" aria-hidden="true">
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <div class="modal-card" id="modalCard">
+    <button class="modal-close" id="modalClose" aria-label="Close letter">&times;</button>
+    <div class="modal-seal" id="modalSeal"></div>
+    <p class="modal-eyebrow">open when…</p>
+    <h3 class="modal-reason" id="modalReason"></h3>
+    <h4 class="modal-title" id="modalTitle"></h4>
+    <div class="coupons-grid" id="couponsGrid"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
